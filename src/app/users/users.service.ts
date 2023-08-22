@@ -30,6 +30,12 @@ export class UsersService {
     });
   }
 
+  async findOneByEmail(email: string) {
+    return this.usersRepository.findOne({
+      where: [{ email }],
+    });
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async update(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.usersRepository.findOne({
