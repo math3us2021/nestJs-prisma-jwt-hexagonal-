@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../app/users/users.service';
-import { User } from '../app/users/entities/user.entity';
+// import { User } from '../app/users/entities/user.entity';
 import { compareSync } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Users } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
   async validateUser(email: string, password: string) {
-    let user: User;
+    let user: Users;
     try {
       user = await this.usersService.findOneByEmail(email);
     } catch (e) {
